@@ -650,12 +650,25 @@ const LandingPage = () => {
                 className="app-promo__badges"
                 aria-label="App download badges"
               >
-                <a className="store-badge" href="#download-ios">
-                  <img
-                    src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
-                    alt="Download on the App Store"
-                    loading="lazy"
-                  />
+                <a
+                  className="store-badge store-badge--apple"
+                  href="#download-ios"
+                >
+                  <span className="store-badge__icon" aria-hidden>
+                    <svg
+                      viewBox="0 0 30 30"
+                      fill="currentColor"
+                      role="img"
+                      aria-hidden="true"
+                    >
+                      <path d="M19.74 13.58c-.02-2.08 1.71-3.09 1.79-3.14-0.98-1.43-2.51-1.63-3.05-1.65-1.3-.21-2.53.78-3.18.78-.67 0-1.68-.76-2.77-.73-1.42.02-2.74.82-3.47 2.07-1.48 2.56-.38 6.34 1.06 8.42.7 1 1.54 2.12 2.66 2.08 1.05-.04 1.45-.68 2.73-.68 1.29 0 1.65.68 2.78.66 1.15-.02 1.88-1.03 2.57-2.03.81-1.17 1.15-2.31 1.16-2.37-.03-.01-3.08-1.18-3.09-3.5zm-1.93-6.35c.59-.73.99-1.74.88-2.76-.85.03-1.9.57-2.52 1.3-.55.64-1.04 1.68-.91 2.66.96.08 1.88-.49 2.55-1.2z" />
+                    </svg>
+                  </span>
+
+                  <span className="store-badge__label">
+                    <span>Download on the</span>
+                    <strong>App Store</strong>
+                  </span>
                 </a>
 
                 <a className="store-badge" href="#download-android">

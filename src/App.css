@@ -13,13 +13,24 @@
   --avatar-1: linear-gradient(120deg, #f6d365, #fda085);
   --avatar-2: linear-gradient(120deg, #84fab0, #8fd3f4);
   --avatar-3: linear-gradient(120deg, #cfd9df, #e2ebf0);
+  --layout-page-gutter: clamp(1.25rem, 8vw, 10rem);
 }
 
-html,
+html {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   margin: 0;
   padding: 0;
-  /* overflow-x: hidden; */
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 .crypto-access {
@@ -115,8 +126,8 @@ body {
 }
 
 .app-promo {
-  width: 100vw;
-  margin: 5px calc(50% - 50vw) 0;
+  width: 100%;
+  margin: 5px auto 0;
   background:
     radial-gradient(
       circle at 20% 0%,
@@ -124,20 +135,12 @@ body {
       transparent 45%
     ),
     linear-gradient(145deg, #2b1408 0%, #120702 65%, #0a0301 100%);
-  padding: clamp(4rem, 8vw, 5rem) clamp(1rem, 4vw, 1.5rem);
+  padding: clamp(2.5rem, 6vw, 3.5rem) clamp(1.25rem, 6vw, 3.5rem);
   border-radius: 0;
-  border-top: 1px solid rgba(255, 188, 126, 0.16);
+  color: #f9e9dc;
   position: relative;
   overflow: hidden;
-  color: #f9e9dc;
-}
-
-.app-promo::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: none;
-  pointer-events: none;
+  box-sizing: border-box;
 }
 
 .app-promo__inner {
@@ -212,6 +215,53 @@ body {
   display: block;
   height: auto;
   width: 100%;
+}
+
+.store-badge--apple {
+  width: auto;
+  height: auto;
+  border-radius: 7px;
+  border: 1.8px solid #726f6f;
+  background: #000;
+  padding: 0.45rem 0.95rem;
+  gap: 0.75rem;
+  color: #ffffff;
+  overflow: visible;
+}
+
+.store-badge--apple .store-badge__icon {
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  color: #ffffff;
+}
+
+.store-badge--apple .store-badge__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.store-badge--apple .store-badge__label {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+  gap: 2px;
+  text-align: left;
+}
+
+.store-badge--apple .store-badge__label span {
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.store-badge--apple .store-badge__label strong {
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 .app-promo__ratings {
@@ -473,6 +523,10 @@ body {
   .invest-banner__content p {
     max-width: 100%;
   }
+
+  .invest-banner__surface::after {
+    background-image: none;
+  }
 }
 
 #root {
@@ -512,7 +566,7 @@ body {
   width: 100%;
   max-width: none;
   margin: 0;
-  padding-inline: clamp(1.5rem, 8vw, 10%);
+  padding-inline: var(--layout-page-gutter);
 }
 
 .hero-surface::after {
@@ -639,7 +693,7 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  height: 100vh;
+  min-height: 100vh;
   width: min(72vw, 320px);
   background: rgba(17, 8, 2, 0.96);
   border-right: 1px solid rgba(255, 190, 140, 0.18);
@@ -965,7 +1019,7 @@ body {
 main {
   background: linear-gradient(180deg, #fff, #fff7ef 60%, #ffeede);
   padding-block: clamp(2.5rem, 6vw, 5rem) 0;
-  padding-inline: 10%;
+  padding-inline: var(--layout-page-gutter);
   display: flex;
   flex-direction: column;
   gap: clamp(2rem, 4vw, 3rem);
@@ -1436,8 +1490,8 @@ main {
 }
 
 .app-promo {
-  width: 100vw;
-  margin: 5px calc(50% - 50vw) 0;
+  width: calc(100% + (var(--layout-page-gutter) * 2));
+  margin: 5px calc(-1 * var(--layout-page-gutter)) 0;
   background:
     radial-gradient(
       circle at 20% 0%,
@@ -1450,6 +1504,38 @@ main {
   color: #f9e9dc;
   position: relative;
   overflow: hidden;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1024px) {
+  .app-promo {
+    width: 100%;
+    margin: 5px auto 0;
+    padding-inline: 10%;
+    border-radius: 32px;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(255, 190, 140, 0.45);
+    margin-bottom: clamp(2.5rem, 6vw, 3.5rem);
+  }
+
+  .app-promo__phone {
+    width: min(320px, 60vw);
+    aspect-ratio: 9 / 16;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-promo {
+    width: 100%;
+    margin-top: 5px;
+    margin-inline: auto;
+    margin-bottom: clamp(2.5rem, 6vw, 3.5rem);
+  }
+
+  .app-promo__phone {
+    width: min(280px, 70vw);
+    aspect-ratio: 9 / 16;
+  }
 }
 
 .toolkit {
@@ -2106,12 +2192,9 @@ main {
   }
 
   .trust-card {
-    margin-left: 0;
-    max-width: 100%;
-  }
-
-  .feature-row {
-    grid-template-columns: 1fr;
+    margin: clamp(0.75rem, 2vw, 1.25rem) auto 0;
+    max-width: min(100%, 520px);
+    padding: 0.85rem 1.6rem;
   }
 }
 
@@ -2294,7 +2377,7 @@ main {
   .toolkit__actions,
   .footer-top {
     align-items: flex-start;
-    text-align: left;
+    /* text-align: left; */
   }
 
   .feature-row,
@@ -2368,42 +2451,22 @@ main {
   }
 
   .trust-card {
+    width: min(100% - 1.5rem, 430px);
     margin: 0.6rem auto 0;
-    max-width: 460px;
-    background:
-      radial-gradient(
-        120% 110% at 12% -18%,
-        rgba(255, 150, 80, 0.2),
-        transparent 55%
-      ),
-      linear-gradient(160deg, #2b1206 0%, #170802 60%, #0c0301 100%);
-    padding: 0.75rem 1.5rem;
+    padding: 0.85rem 1.3rem;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 0.75rem;
     border-radius: 22px;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 0.8rem;
-    box-shadow: 0 20px 40px rgba(5, 2, 0, 0.55);
-    border: 1px solid rgba(255, 180, 120, 0.16);
   }
 
   .trust-card__item {
-    padding: 0.2rem 0.8rem 0.4rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    align-items: flex-start;
-    border-left: 1px solid rgba(255, 206, 166, 0.18);
+    padding: 0.35rem 0.85rem 0.5rem;
+    border-left: none;
+    border-top: 1px solid rgba(255, 206, 166, 0.18);
   }
 
   .trust-card__item:first-child {
-    border-left: none;
-  }
-
-  .trust-card__item h3 {
-    margin: 0;
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: rgba(255, 214, 170, 0.9);
-    line-height: 1.25;
+    border-top: 0;
   }
 
   .trust-card__item:first-child h3,
