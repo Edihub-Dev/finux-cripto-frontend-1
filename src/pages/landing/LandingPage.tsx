@@ -172,6 +172,12 @@ const howItWorksSteps: HowItWorksStep[] = [
   },
 ];
 
+const formatRatingScore = (value: number) =>
+  value.toLocaleString("de-DE", {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+  });
+
 const LandingPage = () => {
   const [activeHowItWorksStep, setActiveHowItWorksStep] =
     useState<HowItWorksStepId>("create");
@@ -674,25 +680,30 @@ const LandingPage = () => {
               </div>
 
               <div className="app-promo__ratings">
-                {appRatings.map((rating) => (
-                  <div className="app-promo__rating" key={rating.label}>
-                    <span
-                      className="app-promo__stars"
-                      aria-hidden="true"
-                      style={
-                        {
-                          "--stars-fill": `${(rating.score / 5) * 100}%`,
-                        } as CSSProperties
-                      }
-                    />
+                {appRatings.map((rating) => {
+                  const formattedScore = formatRatingScore(rating.score);
+                  const formattedMaxScore = formatRatingScore(5);
 
-                    <strong>{rating.score.toFixed(1)} / 5.0</strong>
+                  return (
+                    <div className="app-promo__rating" key={rating.label}>
+                      <span
+                        className="app-promo__stars"
+                        aria-hidden="true"
+                        style={
+                          {
+                            "--stars-fill": `${(rating.score / 5) * 100}%`,
+                          } as CSSProperties
+                        }
+                      />
 
-                    <span>{rating.label}</span>
+                      <strong>{`${formattedScore} / ${formattedMaxScore}`}</strong>
 
-                    <span className="sr-only">{`${rating.score.toFixed(1)} out of 5 stars on ${rating.label}`}</span>
-                  </div>
-                ))}
+                      <span>{rating.label}</span>
+
+                      <span className="sr-only">{`${formattedScore} out of ${formattedMaxScore} stars on ${rating.label}`}</span>
+                    </div>
+                  );
+                })}
               </div>
             </div>
 

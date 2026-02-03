@@ -90,7 +90,7 @@ body {
 }
 
 .invest-banner__surface::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   background-image: var(--invest-bg-image);
@@ -101,10 +101,16 @@ body {
 }
 
 .invest-banner__surface::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(28, 13, 6, 0.92) 0%, rgba(39, 18, 8, 0.85) 32%, rgba(58, 29, 12, 0.58) 58%, rgba(83, 43, 16, 0.12) 82%);
+  background: linear-gradient(
+    90deg,
+    rgba(28, 13, 6, 0.92) 0%,
+    rgba(39, 18, 8, 0.85) 32%,
+    rgba(58, 29, 12, 0.58) 58%,
+    rgba(83, 43, 16, 0.12) 82%
+  );
   z-index: 1;
 }
 
@@ -120,10 +126,14 @@ body {
 }
 
 .app-promo::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.35), transparent 60%);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.35),
+    transparent 60%
+  );
   pointer-events: none;
 }
 
@@ -187,6 +197,8 @@ body {
   background: transparent;
   text-decoration: none;
   transition: transform 0.2s ease;
+  height: 44px;
+  width: 160px;
 }
 
 .store-badge:hover {
@@ -195,7 +207,8 @@ body {
 
 .store-badge img {
   display: block;
-  height: 60px;
+  height: auto;
+  width: 100%;
 }
 
 .app-promo__ratings {
@@ -222,7 +235,7 @@ body {
 }
 
 .app-promo__stars::before {
-  content: '★★★★★';
+  content: "★★★★★";
   position: absolute;
   inset: 0;
   color: #f1c46f;
@@ -267,7 +280,6 @@ body {
   z-index: 2;
 }
 
-
 .app-promo__orbit {
   position: absolute;
   inset: -35%;
@@ -294,7 +306,8 @@ body {
   top: 50%;
   left: 50%;
   transform-origin: center;
-  transform: rotate(var(--angle, 0deg)) translateX(var(--orbit-radius)) rotate(calc(-1 * var(--angle, 0deg)));
+  transform: rotate(var(--angle, 0deg)) translateX(var(--orbit-radius))
+    rotate(calc(-1 * var(--angle, 0deg)));
   transition: transform 0.35s ease;
 }
 
@@ -414,7 +427,10 @@ body {
   color: #1f1008;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
 }
 
 .crypto-access__cta:hover {
@@ -476,7 +492,12 @@ body {
   padding-block-start: clamp(0.75rem, 2vw, 1.6rem);
   padding-block-end: clamp(2rem, 4vw, 3.25rem);
   min-height: 100vh;
-  background: radial-gradient(circle at top left, rgba(255, 140, 50, 0.2), transparent 45%),
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(255, 140, 50, 0.2),
+      transparent 45%
+    ),
     linear-gradient(145deg, #2c1404 10%, #1a0902 60%, #180803 90%);
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 20px 80px rgba(4, 2, 0, 0.7);
@@ -492,12 +513,16 @@ body {
 }
 
 .hero-surface::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
   pointer-events: none;
-  background: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.08), transparent 45%);
+  background: radial-gradient(
+    circle at 10% 20%,
+    rgba(255, 255, 255, 0.08),
+    transparent 45%
+  );
 }
 
 .nav {
@@ -556,7 +581,9 @@ body {
   padding: 0.4rem 0.75rem;
   border-radius: 999px;
   cursor: pointer;
-  transition: color 0.2s ease, background 0.2s ease;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
 }
 
 .nav__link svg {
@@ -665,7 +692,9 @@ body {
   padding: 0.65rem 0.25rem;
   border-radius: 12px;
   cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
 }
 
 .nav-drawer__link:hover,
@@ -700,7 +729,9 @@ body {
   background: linear-gradient(135deg, var(--orange), var(--orange-highlight));
   box-shadow: 0 10px 25px rgba(255, 140, 50, 0.35);
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .pill-button:hover {
@@ -722,7 +753,7 @@ body {
 }
 
 .ghost-link::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   bottom: 0;
@@ -864,11 +895,14 @@ body {
   }
 }
 
-
 .trust-card {
   margin-top: clamp(1.25rem, 3vw, 2rem);
   background:
-    radial-gradient(140% 120% at 10% -20%, rgba(255, 150, 80, 0.22), transparent 58%),
+    radial-gradient(
+      140% 120% at 10% -20%,
+      rgba(255, 150, 80, 0.22),
+      transparent 58%
+    ),
     linear-gradient(150deg, #2e1406 0%, #1b0902 52%, #0f0401 100%);
   color: rgba(255, 232, 214, 0.88);
   border-radius: 26px;
@@ -954,7 +988,7 @@ main {
 .feature-card h3,
 .feature-card p,
 .panel-amount {
-  font-family: 'Sora', 'Space Grotesk', sans-serif;
+  font-family: "Sora", "Space Grotesk", sans-serif;
 }
 
 .features__intro .eyebrow {
@@ -1065,11 +1099,15 @@ main {
 }
 
 .feature-panel::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.35), transparent 60%);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.35),
+    transparent 60%
+  );
   pointer-events: none;
 }
 
@@ -1191,10 +1229,12 @@ main {
 .panel-chart span {
   flex: 1;
   border-radius: 6px 6px 0 0;
-  background: linear-gradient(180deg, rgba(255, 126, 59, 0.8), rgba(255, 126, 59, 0.2));
+  background: linear-gradient(
+    180deg,
+    rgba(255, 126, 59, 0.8),
+    rgba(255, 126, 59, 0.2)
+  );
 }
-
-
 
 .how-it-works {
   margin: 5px auto 0 auto;
@@ -1258,7 +1298,11 @@ main {
   font-weight: 600;
   font-size: 0.98rem;
   cursor: pointer;
-  transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .how-it-works__tab:hover {
@@ -1294,7 +1338,9 @@ main {
   opacity: 0;
   transform: translateY(16px);
   pointer-events: none;
-  transition: opacity 0.35s ease, transform 0.35s ease;
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
 }
 
 .how-it-works__panel-inner.is-active {
@@ -1452,7 +1498,6 @@ main {
   cursor: pointer;
 }
 
-
 .toolkit__grid {
   display: grid;
   grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr);
@@ -1472,7 +1517,11 @@ main {
 }
 
 .toolkit-card {
-  background: radial-gradient(circle at top, rgba(255, 255, 255, 0.08), rgba(0, 0, 0, 0.15));
+  background: radial-gradient(
+    circle at top,
+    rgba(255, 255, 255, 0.08),
+    rgba(0, 0, 0, 0.15)
+  );
   border-radius: 26px;
   padding: 0.8rem 0.95rem;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -1486,7 +1535,7 @@ main {
 }
 
 .toolkit-card::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
@@ -1516,23 +1565,27 @@ main {
   height: 100%;
   padding: 1rem 1.1rem 1.2rem;
   background:
-    radial-gradient(100% 90% at 50% 40%, rgba(255, 150, 70, 0.32), rgba(26, 8, 2, 0.12) 60%, rgba(12, 4, 1, 0.92) 100%),
+    radial-gradient(
+      100% 90% at 50% 40%,
+      rgba(255, 150, 70, 0.32),
+      rgba(26, 8, 2, 0.12) 60%,
+      rgba(12, 4, 1, 0.92) 100%
+    ),
     linear-gradient(168deg, #311706 0%, #140602 55%, #040000 100%);
   overflow: hidden;
 }
 
 .toolkit-card--encryption::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
   width: clamp(210px, 60%, 340px);
   height: clamp(210px, 60%, 340px);
   transform: translate(-50%, -50%);
-  background: url('./assets/wef 1.svg') center/100% no-repeat;
+  background: url("./assets/wef 1.svg") center/100% no-repeat;
   opacity: 0.9;
-  filter:
-    drop-shadow(0 0 65px rgba(255, 204, 150, 0.32))
+  filter: drop-shadow(0 0 65px rgba(255, 204, 150, 0.32))
     drop-shadow(0 0 130px rgba(120, 60, 20, 0.32));
   z-index: 0;
   pointer-events: none;
@@ -1541,7 +1594,11 @@ main {
 .toolkit-card--payments {
   min-height: 150px;
   background:
-    radial-gradient(circle at 70% 30%, rgba(255, 207, 150, 0.2), transparent 55%),
+    radial-gradient(
+      circle at 70% 30%,
+      rgba(255, 207, 150, 0.2),
+      transparent 55%
+    ),
     linear-gradient(165deg, #1c0903 0%, #120402 50%, #0c0301 100%);
 }
 
@@ -1552,13 +1609,21 @@ main {
 
 .toolkit-card--visualization {
   background:
-    radial-gradient(circle at 30% 25%, rgba(255, 180, 110, 0.15), transparent 60%),
+    radial-gradient(
+      circle at 30% 25%,
+      rgba(255, 180, 110, 0.15),
+      transparent 60%
+    ),
     linear-gradient(150deg, #1a0803 0%, #120502 55%, #0a0201 100%);
 }
 
 .toolkit-card--realtime {
   background:
-    radial-gradient(circle at 65% 20%, rgba(255, 190, 120, 0.18), transparent 50%),
+    radial-gradient(
+      circle at 65% 20%,
+      rgba(255, 190, 120, 0.18),
+      transparent 50%
+    ),
     linear-gradient(140deg, #1e0903 0%, #130502 55%, #090200 100%);
 }
 
@@ -1694,12 +1759,16 @@ main {
   max-height: 230px;
   object-fit: contain;
   filter: drop-shadow(0 16px 34px rgba(0, 0, 0, 0.5))
-    drop-shadow(0 0 60px rgba(255, 184, 120, 0.4))
-    brightness(1.15);
+    drop-shadow(0 0 60px rgba(255, 184, 120, 0.4)) brightness(1.15);
 }
 
 .site-footer {
-  background: radial-gradient(circle at 20% 0%, rgba(255, 170, 90, 0.25), transparent 45%),
+  background:
+    radial-gradient(
+      circle at 20% 0%,
+      rgba(255, 170, 90, 0.25),
+      transparent 45%
+    ),
     linear-gradient(145deg, #2b1408 0%, #120702 65%, #0a0301 100%);
   color: #f5e5d4;
   padding: clamp(3.5rem, 8vw, 4.5rem) clamp(1.25rem, 6vw, 3.5rem) 0;
@@ -1936,7 +2005,9 @@ main {
 [data-animate] {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
 }
 
 [data-animate].is-visible {
@@ -2182,9 +2253,8 @@ main {
   /* .crypto-access,
   .invest-banner {
     /* padding-inline: clamp(0.75rem, 5vw, 1.25rem); */
-  /* } */ */
-
-  .crypto-access__surface,
+  /* } */
+  */ .crypto-access__surface,
   .invest-banner__surface {
     border-radius: 28px;
   }
@@ -2232,7 +2302,11 @@ main {
     margin: 0.6rem auto 0;
     max-width: 460px;
     background:
-      radial-gradient(120% 110% at 12% -18%, rgba(255, 150, 80, 0.2), transparent 55%),
+      radial-gradient(
+        120% 110% at 12% -18%,
+        rgba(255, 150, 80, 0.2),
+        transparent 55%
+      ),
       linear-gradient(160deg, #2b1206 0%, #170802 60%, #0c0301 100%);
     padding: 0.75rem 1.5rem;
     border-radius: 22px;
