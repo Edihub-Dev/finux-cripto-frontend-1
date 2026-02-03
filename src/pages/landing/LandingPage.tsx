@@ -172,12 +172,6 @@ const howItWorksSteps: HowItWorksStep[] = [
   },
 ];
 
-const formatRatingScore = (value: number) =>
-  value.toLocaleString("de-DE", {
-    minimumFractionDigits: 1,
-    maximumFractionDigits: 1,
-  });
-
 const LandingPage = () => {
   const [activeHowItWorksStep, setActiveHowItWorksStep] =
     useState<HowItWorksStepId>("create");
@@ -228,12 +222,6 @@ const LandingPage = () => {
       name: "Polkadot",
       src: "https://cryptologos.cc/logos/polkadot-new-dot-logo.png?v=032",
     },
-  ];
-
-  const appRatings = [
-    { score: 4.8, label: "Trustpilot" },
-
-    { score: 4.7, label: "Google" },
   ];
 
   useEffect(() => {
@@ -679,32 +667,7 @@ const LandingPage = () => {
                 </a>
               </div>
 
-              <div className="app-promo__ratings">
-                {appRatings.map((rating) => {
-                  const formattedScore = formatRatingScore(rating.score);
-                  const formattedMaxScore = formatRatingScore(5);
-
-                  return (
-                    <div className="app-promo__rating" key={rating.label}>
-                      <span
-                        className="app-promo__stars"
-                        aria-hidden="true"
-                        style={
-                          {
-                            "--stars-fill": `${(rating.score / 5) * 100}%`,
-                          } as CSSProperties
-                        }
-                      />
-
-                      <strong>{`${formattedScore} / ${formattedMaxScore}`}</strong>
-
-                      <span>{rating.label}</span>
-
-                      <span className="sr-only">{`${formattedScore} out of ${formattedMaxScore} stars on ${rating.label}`}</span>
-                    </div>
-                  );
-                })}
-              </div>
+              {/* Ratings display intentionally disabled until real-time data is integrated */}
             </div>
 
             <div className="app-promo__visual" role="presentation">
