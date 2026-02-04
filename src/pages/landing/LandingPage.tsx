@@ -874,26 +874,11 @@ const LandingPage = () => {
             </form>
           </div>
 
-          <div className="footer-bottom">
-            <div
-              className="footer-brand"
-              onClick={() => handleNavClick("hero")}
-            >
-              <img src={finuxLogo} alt="Finux" />
-            </div>
-
-            <p>
-              {new Date().getFullYear()} Finux. Designed for builders of the
+          <div className="footer-bottom flex flex-wrap justify-center text-center text-[0.9rem] text-[rgba(255,235,214,0.7)]">
+            <p className="w-full">
+              © {new Date().getFullYear()} Finux. Designed for builders of the
               crypto economy.
             </p>
-
-            <div className="footer-bottom__links">
-              <a href="#">Privacy</a>
-
-              <a href="#">Terms</a>
-
-              <a href="#">Cookies</a>
-            </div>
           </div>
         </div>
       </footer>
