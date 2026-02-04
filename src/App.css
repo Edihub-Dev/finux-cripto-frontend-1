@@ -19,12 +19,15 @@
 html {
   margin: 0;
   padding: 0;
+  height: 100%;
 }
 
 body {
   margin: 0;
   padding: 0;
+  height: 100%;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 img {
@@ -883,6 +886,9 @@ img {
 }
 
 .pill-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
   border: none;
   border-radius: 999px;
   font-weight: 600;
@@ -894,6 +900,17 @@ img {
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;
+}
+
+.pill-button__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pill-button__icon svg {
+  width: 30px;
+  height: 30px;
 }
 
 .pill-button:hover {
@@ -942,7 +959,7 @@ img {
 }
 
 .hero__content h1 {
-  font-size: clamp(2.5rem, 4vw, 3.8rem);
+  font-size: clamp(2.5rem, 3vw, 3.8rem);
   margin-bottom: 1rem;
   line-height: 1.1;
 }

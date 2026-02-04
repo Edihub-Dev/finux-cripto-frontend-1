@@ -1,4 +1,5 @@
 import { type CSSProperties, useEffect, useState } from "react";
+import { MdOutlineAndroid } from "react-icons/md";
 
 import heroCoins from "../../assets/bitcoin copy 1.svg";
 
@@ -178,6 +179,10 @@ const LandingPage = () => {
 
   const [isNavOpen, setIsNavOpen] = useState(false);
 
+  const [showExtraSections] = useState(false);
+
+  const [showHeaderExtras] = useState(false);
+
   const investBannerStyle = {
     "--invest-bg-image": `url(${investBackground})`,
   } as CSSProperties;
@@ -272,19 +277,21 @@ const LandingPage = () => {
     <div className="page-shell">
       <header className="hero-surface" id="hero" data-animate>
         <div className={`nav ${isNavOpen ? "nav--open" : ""}`}>
-          <button
-            type="button"
-            className="nav__toggle"
-            aria-label={isNavOpen ? "Close navigation" : "Open navigation"}
-            aria-expanded={isNavOpen}
-            onClick={() => setIsNavOpen((open) => !open)}
-          >
-            <span />
+          {showHeaderExtras && (
+            <button
+              type="button"
+              className="nav__toggle"
+              aria-label={isNavOpen ? "Close navigation" : "Open navigation"}
+              aria-expanded={isNavOpen}
+              onClick={() => setIsNavOpen((open) => !open)}
+            >
+              <span />
 
-            <span />
+              <span />
 
-            <span />
-          </button>
+              <span />
+            </button>
+          )}
 
           <div className="brand" onClick={() => handleNavClick("hero")}>
             <img src={finuxLogo} alt="Finux logo" className="brand__logo" />
@@ -292,79 +299,98 @@ const LandingPage = () => {
             <span className="brand__name"></span>
           </div>
 
-          <nav className="nav__links" aria-label="Primary">
-            {navLinks.map((link) => (
-              <button
-                key={link.label}
-                className="nav__link"
-                onClick={() => handleNavClick(link.target)}
-                aria-label={`Go to ${link.label}`}
-              >
-                {link.label}
-
-                {link.hasDropdown && (
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 12 12"
-                    aria-hidden="true"
+          {showHeaderExtras && (
+            <>
+              <nav className="nav__links" aria-label="Primary">
+                {navLinks.map((link) => (
+                  <button
+                    key={link.label}
+                    className="nav__link"
+                    onClick={() => handleNavClick(link.target)}
+                    aria-label={`Go to ${link.label}`}
                   >
-                    <path d="M2.5 4.5 6 8l3.5-3.5" />
-                  </svg>
-                )}
-              </button>
-            ))}
-          </nav>
+                    {link.label}
 
-          <button
-            className="pill-button nav__download"
-            onClick={() => handleNavClick("download-app")}
-          >
-            Download
-          </button>
+                    {link.hasDropdown && (
+                      <svg
+                        width="12"
+                        height="12"
+                        viewBox="0 0 12 12"
+                        aria-hidden="true"
+                      >
+                        <path d="M2.5 4.5 6 8l3.5-3.5" />
+                      </svg>
+                    )}
+                  </button>
+                ))}
+              </nav>
+
+              <button
+                className="pill-button nav__download"
+                onClick={() => handleNavClick("download-app")}
+              >
+                Download
+              </button>
+            </>
+          )}
         </div>
 
         <section className="hero" aria-labelledby="hero-title">
           <div className="hero__content">
             <span className="hero__eyebrow">Introducing Finux</span>
 
-            <h1 id="hero-title">Buy &amp; trade crypto securely</h1>
+            {/* <h1 id="hero-title">Buy &amp; trade crypto securely</h1> */}
+            <h1 id="hero-title">
+              Future Internet Network for Universal Assets.
+            </h1>
 
             <p>
-              Start your crypto journey on our trusted platform with a simple,
-              secure way to buy, trade, and manage digital assets.
+              A secure crypto wallet and reward ecosystem— earn daily, stake
+              smart, and grow with liquidity.
             </p>
 
             <div className="hero__actions">
               <button
                 className="pill-button"
-                onClick={() => handleNavClick("download-app")}
+                onClick={() =>
+                  window.open(
+                    "https://finux-online.s3.ap-south-1.amazonaws.com/apk/finux.apk",
+                    "_blank",
+                  )
+                }
               >
-                Download
+                <span
+                  aria-hidden="true"
+                  className="pill-button__icon pill-button__icon--android"
+                >
+                  <MdOutlineAndroid />
+                </span>
+                <span>Download Apk</span>
               </button>
 
-              <a className="ghost-link" href="#security">
-                View security proof
+              <a className="ghost-link" href="#">
+                Download Pdf
               </a>
             </div>
+            {showHeaderExtras && (
+              <div className="hero__social">
+                <div className="avatar-group" aria-hidden="true">
+                  {avatars.map((avatar) => (
+                    <span
+                      key={avatar.initials}
+                      className="avatar"
+                      style={{ background: avatar.color }}
+                    >
+                      {avatar.initials}
+                    </span>
+                  ))}
+                </div>
 
-            <div className="hero__social">
-              <div className="avatar-group" aria-hidden="true">
-                {avatars.map((avatar) => (
-                  <span
-                    key={avatar.initials}
-                    className="avatar"
-                    style={{ background: avatar.color }}
-                  >
-                    {avatar.initials}
-                  </span>
-                ))}
+                <p>
+                  <strong>150k+ people</strong> already joined
+                </p>
               </div>
-
-              <p>
-                <strong>150k+ people</strong> already joined
-              </p>
-            </div>
+            )}
           </div>
 
           <div className="hero__visual" role="presentation">
@@ -378,510 +404,525 @@ const LandingPage = () => {
           </div>
         </section>
 
-        <section
-          className="trust-card"
-          id="security"
-          aria-label="Security highlights"
-        >
-          {stats.map((item) => (
-            <article key={item.value} className="trust-card__item">
-              <h3>{item.value}</h3>
-
-              <p>{item.label}</p>
-            </article>
-          ))}
-        </section>
-      </header>
-
-      <aside className={`nav-drawer ${isNavOpen ? "nav-drawer--open" : ""}`}>
-        <div className="nav-drawer__header">
-          <span>Menu</span>
-
-          <button
-            className="nav-drawer__close"
-            onClick={() => setIsNavOpen(false)}
+        {showHeaderExtras && (
+          <section
+            className="trust-card"
+            id="security"
+            aria-label="Security highlights"
           >
-            ×
-          </button>
-        </div>
+            {stats.map((item) => (
+              <article key={item.value} className="trust-card__item">
+                <h3>{item.value}</h3>
 
-        <nav className="nav-drawer__links" aria-label="Primary navigation">
-          {navLinks.map((link) => (
-            <button
-              key={link.label}
-              className="nav-drawer__link"
-              onClick={() => handleNavClick(link.target)}
-              aria-label={`Go to ${link.label}`}
-            >
-              {link.label}
-            </button>
-          ))}
-        </nav>
-      </aside>
-
-      <button
-        type="button"
-        className={`nav-drawer__backdrop ${isNavOpen ? "is-visible" : ""}`}
-        aria-hidden={!isNavOpen}
-        onClick={() => setIsNavOpen(false)}
-      />
-
-      <main>
-        <section className="features" id="features">
-          <div className="features__intro" data-animate>
-            <p className="eyebrow">Why this app for you?</p>
-
-            <h2>Explore how Defichain fits your workflow</h2>
-
-            <p>
-              Discover the features that make our application a dependable
-              option for investors who demand security, clarity, and control.
-            </p>
-          </div>
-
-          <div className="feature-rows">
-            {featureRows.map((row) => (
-              <article key={row.id} className="feature-row" data-animate>
-                <div className="feature-card">
-                  <div className="feature-card__text">
-                    <h3>{row.title}</h3>
-
-                    <p>{row.description}</p>
-                  </div>
-
-                  <div className="feature-card__footer">
-                    <img
-                      src={row.icon}
-                      alt=""
-                      aria-hidden="true"
-                      className="feature-card__icon"
-                    />
-
-                    <button
-                      className="icon-button"
-                      aria-label="Learn more about feature"
-                    >
-                      ↗
-                    </button>
-                  </div>
-                </div>
-
-                <div className={`feature-panel panel--${row.panel}`}>
-                  {renderFeaturePanel(row.panel)}
-                </div>
+                <p>{item.label}</p>
               </article>
             ))}
-          </div>
-        </section>
+          </section>
+        )}
+      </header>
 
-        <section className="toolkit" id="toolkit">
-          <div className="toolkit__header" data-animate>
-            <div className="toolkit__title">
-              <h2>Everything you need for crypto</h2>
+      {showExtraSections && (
+        <>
+          <aside
+            className={`nav-drawer ${isNavOpen ? "nav-drawer--open" : ""}`}
+          >
+            <div className="nav-drawer__header">
+              <span>Menu</span>
+
+              <button
+                className="nav-drawer__close"
+                onClick={() => setIsNavOpen(false)}
+              >
+                ×
+              </button>
             </div>
 
-            <p className="toolkit__description">
-              Our platform provides tools for all your crypto needs, from
-              advanced trading to strong security, all in one easy-to-use place.
-            </p>
-          </div>
-
-          <div className="toolkit__grid" data-animate>
-            <ToolkitFeatureCard cardId="encryption" />
-
-            <div className="toolkit__right-column">
-              <ToolkitFeatureCard cardId="payments" />
-
-              <div className="toolkit__row">
-                <ToolkitFeatureCard cardId="visualization" />
-
-                <ToolkitFeatureCard cardId="realtime" />
-              </div>
-            </div>
-          </div>
-
-          <div className="toolkit__actions" data-animate>
-            <button
-              className="pill-button"
-              type="button"
-              onClick={() => handleNavClick("download-app")}
-            >
-              Download
-            </button>
-
-            <button className="ghost-pill">Browse all features</button>
-          </div>
-        </section>
-
-        <section
-          className="how-it-works"
-          aria-labelledby="how-it-works-title"
-          data-animate
-        >
-          <div className="how-it-works__container">
-            <div className="how-it-works__header">
-              <h2 id="how-it-works-title">How does it work?</h2>
-
-              <p>
-                It&apos;s easy to get started. Follow our simple three-step
-                guide to set up your account and dive into the world of crypto.
-              </p>
-            </div>
-
-            <div
-              className="how-it-works__tabs"
-              role="tablist"
-              aria-label="Finux onboarding steps"
-            >
-              {howItWorksSteps.map((step) => (
+            <nav className="nav-drawer__links" aria-label="Primary navigation">
+              {navLinks.map((link) => (
                 <button
-                  key={step.id}
-                  type="button"
-                  role="tab"
-                  className={`how-it-works__tab ${step.id === activeHowItWorksStep ? "is-active" : ""}`}
-                  aria-selected={step.id === activeHowItWorksStep}
-                  onClick={() => setActiveHowItWorksStep(step.id)}
+                  key={link.label}
+                  className="nav-drawer__link"
+                  onClick={() => handleNavClick(link.target)}
+                  aria-label={`Go to ${link.label}`}
                 >
-                  {step.label}
+                  {link.label}
                 </button>
               ))}
-            </div>
-          </div>
+            </nav>
+          </aside>
 
-          <div
-            className="how-it-works__surface"
-            data-active-step={activeHowItWorksStep}
-          >
-            <div className="how-it-works__panel" role="tabpanel">
-              {howItWorksSteps.map((step) => (
-                <div
-                  key={step.id}
-                  className={`how-it-works__panel-inner ${step.id === activeHowItWorksStep ? "is-active" : ""}`}
-                  aria-hidden={step.id !== activeHowItWorksStep}
-                >
-                  <div className="how-it-works__panel-content">
-                    <h3>{step.title}</h3>
+          <button
+            type="button"
+            className={`nav-drawer__backdrop ${isNavOpen ? "is-visible" : ""}`}
+            aria-hidden={!isNavOpen}
+            onClick={() => setIsNavOpen(false)}
+          />
 
-                    <p>{step.description}</p>
+          <main>
+            <section className="features" id="features">
+              <div className="features__intro" data-animate>
+                <p className="eyebrow">Why this app for you?</p>
 
-                    <button
-                      className="pill-button how-it-works__cta"
-                      type="button"
-                      onClick={() => handleNavClick("download-app")}
-                    >
-                      Download app
-                    </button>
-                  </div>
+                <h2>Explore how Defichain fits your workflow</h2>
 
-                  <div className="how-it-works__panel-visual">
-                    <img src={step.image} alt={step.imageAlt} />
+                <p>
+                  Discover the features that make our application a dependable
+                  option for investors who demand security, clarity, and
+                  control.
+                </p>
+              </div>
+
+              <div className="feature-rows">
+                {featureRows.map((row) => (
+                  <article key={row.id} className="feature-row" data-animate>
+                    <div className="feature-card">
+                      <div className="feature-card__text">
+                        <h3>{row.title}</h3>
+
+                        <p>{row.description}</p>
+                      </div>
+
+                      <div className="feature-card__footer">
+                        <img
+                          src={row.icon}
+                          alt=""
+                          aria-hidden="true"
+                          className="feature-card__icon"
+                        />
+
+                        <button
+                          className="icon-button"
+                          aria-label="Learn more about feature"
+                        >
+                          ↗
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className={`feature-panel panel--${row.panel}`}>
+                      {renderFeaturePanel(row.panel)}
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </section>
+
+            <section className="toolkit" id="toolkit">
+              <div className="toolkit__header" data-animate>
+                <div className="toolkit__title">
+                  <h2>Everything you need for crypto</h2>
+                </div>
+
+                <p className="toolkit__description">
+                  Our platform provides tools for all your crypto needs, from
+                  advanced trading to strong security, all in one easy-to-use
+                  place.
+                </p>
+              </div>
+
+              <div className="toolkit__grid" data-animate>
+                <ToolkitFeatureCard cardId="encryption" />
+
+                <div className="toolkit__right-column">
+                  <ToolkitFeatureCard cardId="payments" />
+
+                  <div className="toolkit__row">
+                    <ToolkitFeatureCard cardId="visualization" />
+
+                    <ToolkitFeatureCard cardId="realtime" />
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
+              </div>
 
-        <section
-          className="crypto-access"
-          aria-labelledby="crypto-access-title"
-          data-animate
-        >
-          <div className="crypto-access__surface">
-            <div className="crypto-access__visual" role="presentation">
-              <img src={cryptoAccessImage} alt="Floating crypto coins" />
-            </div>
+              <div className="toolkit__actions" data-animate>
+                <button
+                  className="pill-button"
+                  type="button"
+                  onClick={() => handleNavClick("download-app")}
+                >
+                  Download
+                </button>
 
-            <div className="crypto-access__content">
-              <span className="crypto-access__eyebrow">
-                Global asset coverage
-              </span>
+                <button className="ghost-pill">Browse all features</button>
+              </div>
+            </section>
 
-              <h2 id="crypto-access-title">Access 1,000+ cryptocurrencies</h2>
+            <section
+              className="how-it-works"
+              aria-labelledby="how-it-works-title"
+              data-animate
+            >
+              <div className="how-it-works__container">
+                <div className="how-it-works__header">
+                  <h2 id="how-it-works-title">How does it work?</h2>
 
-              <p>
-                Explore a wide range of digital currencies and expand your
-                portfolio with access to over a thousand cryptocurrencies.
-              </p>
+                  <p>
+                    It&apos;s easy to get started. Follow our simple three-step
+                    guide to set up your account and dive into the world of
+                    crypto.
+                  </p>
+                </div>
 
-              <button className="crypto-access__cta" type="button">
-                Browse all crypto
-              </button>
-            </div>
-          </div>
-        </section>
-
-        <section
-          className="invest-banner"
-          aria-labelledby="invest-banner-title"
-          data-animate
-        >
-          <div className="invest-banner__surface" style={investBannerStyle}>
-            <div className="invest-banner__content">
-              <h2 id="invest-banner-title">Start investing in crypto today</h2>
-
-              <p>
-                Seize the opportunity to enter the digital finance arena. Get
-                our application and start your investment journey now.
-              </p>
-
-              <button
-                className="pill-button"
-                type="button"
-                onClick={() => handleNavClick("download-app")}
-              >
-                Download app
-              </button>
-            </div>
-
-            <div className="invest-banner__visual" role="presentation">
-              <img src={investShape} alt="" />
-            </div>
-          </div>
-        </section>
-
-        <section
-          className="app-promo"
-          id="download-app"
-          aria-labelledby="app-promo-title"
-          data-animate
-        >
-          <div className="app-promo__inner">
-            <div className="app-promo__content">
-              <p className="app-promo__eyebrow">Mobile first</p>
-
-              <h2 id="app-promo-title">Get our iOS and Android app</h2>
-
-              <p>
-                Take Finux wherever you go. Track markets, move funds, and
-                receive realtime alerts with a beautifully crafted experience
-                that mirrors our desktop dashboard.
-              </p>
+                <div
+                  className="how-it-works__tabs"
+                  role="tablist"
+                  aria-label="Finux onboarding steps"
+                >
+                  {howItWorksSteps.map((step) => (
+                    <button
+                      key={step.id}
+                      type="button"
+                      role="tab"
+                      className={`how-it-works__tab ${step.id === activeHowItWorksStep ? "is-active" : ""}`}
+                      aria-selected={step.id === activeHowItWorksStep}
+                      onClick={() => setActiveHowItWorksStep(step.id)}
+                    >
+                      {step.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
 
               <div
-                className="app-promo__badges"
-                aria-label="App download badges"
+                className="how-it-works__surface"
+                data-active-step={activeHowItWorksStep}
               >
-                <a
-                  className="store-badge store-badge--apple"
-                  href="#download-ios"
-                >
-                  <span className="store-badge__icon" aria-hidden>
-                    <svg
-                      viewBox="0 0 30 30"
-                      fill="currentColor"
-                      role="img"
-                      aria-hidden="true"
+                <div className="how-it-works__panel" role="tabpanel">
+                  {howItWorksSteps.map((step) => (
+                    <div
+                      key={step.id}
+                      className={`how-it-works__panel-inner ${step.id === activeHowItWorksStep ? "is-active" : ""}`}
+                      aria-hidden={step.id !== activeHowItWorksStep}
                     >
-                      <path d="M19.74 13.58c-.02-2.08 1.71-3.09 1.79-3.14-0.98-1.43-2.51-1.63-3.05-1.65-1.3-.21-2.53.78-3.18.78-.67 0-1.68-.76-2.77-.73-1.42.02-2.74.82-3.47 2.07-1.48 2.56-.38 6.34 1.06 8.42.7 1 1.54 2.12 2.66 2.08 1.05-.04 1.45-.68 2.73-.68 1.29 0 1.65.68 2.78.66 1.15-.02 1.88-1.03 2.57-2.03.81-1.17 1.15-2.31 1.16-2.37-.03-.01-3.08-1.18-3.09-3.5zm-1.93-6.35c.59-.73.99-1.74.88-2.76-.85.03-1.9.57-2.52 1.3-.55.64-1.04 1.68-.91 2.66.96.08 1.88-.49 2.55-1.2z" />
-                    </svg>
+                      <div className="how-it-works__panel-content">
+                        <h3>{step.title}</h3>
+
+                        <p>{step.description}</p>
+
+                        <button
+                          className="pill-button how-it-works__cta"
+                          type="button"
+                          onClick={() => handleNavClick("download-app")}
+                        >
+                          Download app
+                        </button>
+                      </div>
+
+                      <div className="how-it-works__panel-visual">
+                        <img src={step.image} alt={step.imageAlt} />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            <section
+              className="crypto-access"
+              aria-labelledby="crypto-access-title"
+              data-animate
+            >
+              <div className="crypto-access__surface">
+                <div className="crypto-access__visual" role="presentation">
+                  <img src={cryptoAccessImage} alt="Floating crypto coins" />
+                </div>
+
+                <div className="crypto-access__content">
+                  <span className="crypto-access__eyebrow">
+                    Global asset coverage
                   </span>
 
-                  <span className="store-badge__label">
-                    <span>Download on the</span>
-                    <strong>App Store</strong>
-                  </span>
-                </a>
+                  <h2 id="crypto-access-title">
+                    Access 1,000+ cryptocurrencies
+                  </h2>
 
-                <a
-                  className="store-badge store-badge--google"
-                  href="#download-android"
-                >
-                  <span className="store-badge__icon" aria-hidden="true">
+                  <p>
+                    Explore a wide range of digital currencies and expand your
+                    portfolio with access to over a thousand cryptocurrencies.
+                  </p>
+
+                  <button className="crypto-access__cta" type="button">
+                    Browse all crypto
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <section
+              className="invest-banner"
+              aria-labelledby="invest-banner-title"
+              data-animate
+            >
+              <div className="invest-banner__surface" style={investBannerStyle}>
+                <div className="invest-banner__content">
+                  <h2 id="invest-banner-title">
+                    Start investing in crypto today
+                  </h2>
+
+                  <p>
+                    Seize the opportunity to enter the digital finance arena.
+                    Get our application and start your investment journey now.
+                  </p>
+
+                  <button
+                    className="pill-button"
+                    type="button"
+                    onClick={() => handleNavClick("download-app")}
+                  >
+                    Download app
+                  </button>
+                </div>
+
+                <div className="invest-banner__visual" role="presentation">
+                  <img src={investShape} alt="" />
+                </div>
+              </div>
+            </section>
+
+            <section
+              className="app-promo"
+              id="download-app"
+              aria-labelledby="app-promo-title"
+              data-animate
+            >
+              <div className="app-promo__inner">
+                <div className="app-promo__content">
+                  <p className="app-promo__eyebrow">Mobile first</p>
+
+                  <h2 id="app-promo-title">Get our iOS and Android app</h2>
+
+                  <p>
+                    Take Finux wherever you go. Track markets, move funds, and
+                    receive realtime alerts with a beautifully crafted
+                    experience that mirrors our desktop dashboard.
+                  </p>
+
+                  <div
+                    className="app-promo__badges"
+                    aria-label="App download badges"
+                  >
+                    <a
+                      className="store-badge store-badge--apple"
+                      href="#download-ios"
+                    >
+                      <span className="store-badge__icon" aria-hidden>
+                        <svg
+                          viewBox="0 0 30 30"
+                          fill="currentColor"
+                          role="img"
+                          aria-hidden="true"
+                        >
+                          <path d="M19.74 13.58c-.02-2.08 1.71-3.09 1.79-3.14-0.98-1.43-2.51-1.63-3.05-1.65-1.3-.21-2.53.78-3.18.78-.67 0-1.68-.76-2.77-.73-1.42.02-2.74.82-3.47 2.07-1.48 2.56-.38 6.34 1.06 8.42.7 1 1.54 2.12 2.66 2.08 1.05-.04 1.45-.68 2.73-.68 1.29 0 1.65.68 2.78.66 1.15-.02 1.88-1.03 2.57-2.03.81-1.17 1.15-2.31 1.16-2.37-.03-.01-3.08-1.18-3.09-3.5zm-1.93-6.35c.59-.73.99-1.74.88-2.76-.85.03-1.9.57-2.52 1.3-.55.64-1.04 1.68-.91 2.66.96.08 1.88-.49 2.55-1.2z" />
+                        </svg>
+                      </span>
+
+                      <span className="store-badge__label">
+                        <span>Download on the</span>
+                        <strong>App Store</strong>
+                      </span>
+                    </a>
+
+                    <a
+                      className="store-badge store-badge--google"
+                      href="#download-android"
+                    >
+                      <span className="store-badge__icon" aria-hidden="true">
+                        <img
+                          src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg"
+                          alt=""
+                          loading="lazy"
+                        />
+                      </span>
+
+                      <span className="store-badge__label">
+                        <span>Get it on</span>
+                        <strong>Google Play</strong>
+                      </span>
+                    </a>
+
+                    <a
+                      className="store-badge store-badge--apk"
+                      href="#download-apk"
+                    >
+                      <span className="store-badge__icon" aria-hidden="true">
+                        <img src={finuxLogo} alt="" />
+                      </span>
+
+                      <span className="store-badge__label">
+                        <span>Download</span>
+                        <strong>APK</strong>
+                      </span>
+                    </a>
+                  </div>
+
+                  {/* Ratings display intentionally disabled until real-time data is integrated */}
+                </div>
+
+                <div className="app-promo__visual" role="presentation">
+                  <div className="app-promo__phone">
                     <img
-                      src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg"
-                      alt=""
+                      src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=80"
+                      alt="Hand holding smartphone"
                       loading="lazy"
                     />
-                  </span>
 
-                  <span className="store-badge__label">
-                    <span>Get it on</span>
-                    <strong>Google Play</strong>
-                  </span>
-                </a>
+                    <ul className="app-promo__orbit" aria-hidden="true">
+                      {orbitIcons.map((icon, index) => (
+                        <li
+                          key={icon.name}
+                          style={
+                            {
+                              "--angle": `${(index / orbitIcons.length) * 360}deg`,
+                            } as CSSProperties
+                          }
+                        >
+                          <img src={icon.src} alt={icon.name} loading="lazy" />
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </main>
 
-                <a
-                  className="store-badge store-badge--apk"
-                  href="#download-apk"
-                >
-                  <span className="store-badge__icon" aria-hidden="true">
-                    <img src={finuxLogo} alt="" />
-                  </span>
+          <footer className="site-footer" data-animate>
+            <div className="footer-shell">
+              <div className="footer-top">
+                <div className="footer-cta">
+                  <p className="footer-cta__eyebrow">Ready to begin?</p>
 
-                  <span className="store-badge__label">
-                    <span>Download</span>
-                    <strong>APK</strong>
-                  </span>
-                </a>
+                  <h2>Start investing in crypto today</h2>
+
+                  <p>
+                    Download our app and join thousands shaping their financial
+                    future through cryptocurrency. Secure, intuitive, and built
+                    for momentum.
+                  </p>
+
+                  <button
+                    className="pill-button footer-cta__button"
+                    type="button"
+                    onClick={() => handleNavClick("download-app")}
+                  >
+                    Download app
+                  </button>
+                </div>
+
+                <div className="footer-links">
+                  <div className="footer-column">
+                    <h3>Main pages</h3>
+
+                    <ul>
+                      <li>
+                        <a href="#hero">Preview</a>
+                      </li>
+
+                      <li>
+                        <a href="#features">Features</a>
+                      </li>
+
+                      <li>
+                        <a href="#toolkit">Toolkit</a>
+                      </li>
+
+                      <li>
+                        <a href="#how-it-works">How it works</a>
+                      </li>
+
+                      <li>
+                        <a href="#crypto-access">Assets</a>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div className="footer-column">
+                    <h3>Resources</h3>
+
+                    <ul>
+                      <li>
+                        <a href="#">Blog</a>
+                      </li>
+
+                      <li>
+                        <a href="#">Pricing</a>
+                      </li>
+
+                      <li>
+                        <a href="#">Support</a>
+                      </li>
+
+                      <li>
+                        <a href="#">Security</a>
+                      </li>
+
+                      <li>
+                        <a href="#">Status</a>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div className="footer-column">
+                    <h3>Utility pages</h3>
+
+                    <ul>
+                      <li>
+                        <a href="#">Contact</a>
+                      </li>
+
+                      <li>
+                        <a href="#">Careers</a>
+                      </li>
+
+                      <li>
+                        <a href="#">Legal</a>
+                      </li>
+
+                      <li>
+                        <a href="#">404</a>
+                      </li>
+
+                      <li>
+                        <a href="#">Coming soon</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
 
-              {/* Ratings display intentionally disabled until real-time data is integrated */}
-            </div>
+              <div className="footer-newsletter">
+                <div className="footer-newsletter__copy">
+                  <h3>Stay tuned for more updates</h3>
 
-            <div className="app-promo__visual" role="presentation">
-              <div className="app-promo__phone">
-                <img
-                  src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=80"
-                  alt="Hand holding smartphone"
-                  loading="lazy"
-                />
+                  <p>Receive the latest news & market insights from Finux.</p>
+                </div>
 
-                <ul className="app-promo__orbit" aria-hidden="true">
-                  {orbitIcons.map((icon, index) => (
-                    <li
-                      key={icon.name}
-                      style={
-                        {
-                          "--angle": `${(index / orbitIcons.length) * 360}deg`,
-                        } as CSSProperties
-                      }
-                    >
-                      <img src={icon.src} alt={icon.name} loading="lazy" />
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
+                <form className="footer-newsletter__form">
+                  <label className="sr-only" htmlFor="footer-email">
+                    Email address
+                  </label>
 
-      <footer className="site-footer" data-animate>
-        <div className="footer-shell">
-          <div className="footer-top">
-            <div className="footer-cta">
-              <p className="footer-cta__eyebrow">Ready to begin?</p>
+                  <input
+                    id="footer-email"
+                    type="email"
+                    placeholder="Enter your email"
+                    required
+                  />
 
-              <h2>Start investing in crypto today</h2>
-
-              <p>
-                Download our app and join thousands shaping their financial
-                future through cryptocurrency. Secure, intuitive, and built for
-                momentum.
-              </p>
-
-              <button
-                className="pill-button footer-cta__button"
-                type="button"
-                onClick={() => handleNavClick("download-app")}
-              >
-                Download app
-              </button>
-            </div>
-
-            <div className="footer-links">
-              <div className="footer-column">
-                <h3>Main pages</h3>
-
-                <ul>
-                  <li>
-                    <a href="#hero">Preview</a>
-                  </li>
-
-                  <li>
-                    <a href="#features">Features</a>
-                  </li>
-
-                  <li>
-                    <a href="#toolkit">Toolkit</a>
-                  </li>
-
-                  <li>
-                    <a href="#how-it-works">How it works</a>
-                  </li>
-
-                  <li>
-                    <a href="#crypto-access">Assets</a>
-                  </li>
-                </ul>
+                  <button type="submit">Subscribe</button>
+                </form>
               </div>
 
-              <div className="footer-column">
-                <h3>Resources</h3>
-
-                <ul>
-                  <li>
-                    <a href="#">Blog</a>
-                  </li>
-
-                  <li>
-                    <a href="#">Pricing</a>
-                  </li>
-
-                  <li>
-                    <a href="#">Support</a>
-                  </li>
-
-                  <li>
-                    <a href="#">Security</a>
-                  </li>
-
-                  <li>
-                    <a href="#">Status</a>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="footer-column">
-                <h3>Utility pages</h3>
-
-                <ul>
-                  <li>
-                    <a href="#">Contact</a>
-                  </li>
-
-                  <li>
-                    <a href="#">Careers</a>
-                  </li>
-
-                  <li>
-                    <a href="#">Legal</a>
-                  </li>
-
-                  <li>
-                    <a href="#">404</a>
-                  </li>
-
-                  <li>
-                    <a href="#">Coming soon</a>
-                  </li>
-                </ul>
+              <div className="footer-bottom flex flex-wrap justify-center text-center text-[0.9rem] text-[rgba(255,235,214,0.7)]">
+                <p className="w-full">
+                  © {new Date().getFullYear()} Finux. Designed for builders of
+                  the crypto economy.
+                </p>
               </div>
             </div>
-          </div>
-
-          <div className="footer-newsletter">
-            <div className="footer-newsletter__copy">
-              <h3>Stay tuned for more updates</h3>
-
-              <p>Receive the latest news & market insights from Finux.</p>
-            </div>
-
-            <form className="footer-newsletter__form">
-              <label className="sr-only" htmlFor="footer-email">
-                Email address
-              </label>
-
-              <input
-                id="footer-email"
-                type="email"
-                placeholder="Enter your email"
-                required
-              />
-
-              <button type="submit">Subscribe</button>
-            </form>
-          </div>
-
-          <div className="footer-bottom flex flex-wrap justify-center text-center text-[0.9rem] text-[rgba(255,235,214,0.7)]">
-            <p className="w-full">
-              © {new Date().getFullYear()} Finux. Designed for builders of the
-              crypto economy.
-            </p>
-          </div>
-        </div>
-      </footer>
+          </footer>
+        </>
+      )}
     </div>
   );
 };
