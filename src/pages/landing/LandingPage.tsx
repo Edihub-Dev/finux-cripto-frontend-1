@@ -286,7 +286,7 @@ const LandingPage = () => {
             <span />
           </button>
 
-          <div className="brand">
+          <div className="brand" onClick={() => handleNavClick("hero")}>
             <img src={finuxLogo} alt="Finux logo" className="brand__logo" />
 
             <span className="brand__name"></span>
@@ -318,7 +318,7 @@ const LandingPage = () => {
 
           <button
             className="pill-button nav__download"
-            onClick={() => handleNavClick("security")}
+            onClick={() => handleNavClick("download-app")}
           >
             Download
           </button>
@@ -338,7 +338,7 @@ const LandingPage = () => {
             <div className="hero__actions">
               <button
                 className="pill-button"
-                onClick={() => handleNavClick("security")}
+                onClick={() => handleNavClick("download-app")}
               >
                 Download
               </button>
@@ -501,7 +501,13 @@ const LandingPage = () => {
           </div>
 
           <div className="toolkit__actions" data-animate>
-            <button className="pill-button">Download</button>
+            <button
+              className="pill-button"
+              type="button"
+              onClick={() => handleNavClick("download-app")}
+            >
+              Download
+            </button>
 
             <button className="ghost-pill">Browse all features</button>
           </div>
@@ -561,6 +567,7 @@ const LandingPage = () => {
                     <button
                       className="pill-button how-it-works__cta"
                       type="button"
+                      onClick={() => handleNavClick("download-app")}
                     >
                       Download app
                     </button>
@@ -618,7 +625,11 @@ const LandingPage = () => {
                 our application and start your investment journey now.
               </p>
 
-              <button className="pill-button" type="button">
+              <button
+                className="pill-button"
+                type="button"
+                onClick={() => handleNavClick("download-app")}
+              >
                 Download app
               </button>
             </div>
@@ -631,6 +642,7 @@ const LandingPage = () => {
 
         <section
           className="app-promo"
+          id="download-app"
           aria-labelledby="app-promo-title"
           data-animate
         >
@@ -671,12 +683,36 @@ const LandingPage = () => {
                   </span>
                 </a>
 
-                <a className="store-badge" href="#download-android">
-                  <img
-                    src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
-                    alt="Get it on Google Play"
-                    loading="lazy"
-                  />
+                <a
+                  className="store-badge store-badge--google"
+                  href="#download-android"
+                >
+                  <span className="store-badge__icon" aria-hidden="true">
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg"
+                      alt=""
+                      loading="lazy"
+                    />
+                  </span>
+
+                  <span className="store-badge__label">
+                    <span>Get it on</span>
+                    <strong>Google Play</strong>
+                  </span>
+                </a>
+
+                <a
+                  className="store-badge store-badge--apk"
+                  href="#download-apk"
+                >
+                  <span className="store-badge__icon" aria-hidden="true">
+                    <img src={finuxLogo} alt="" />
+                  </span>
+
+                  <span className="store-badge__label">
+                    <span>Download</span>
+                    <strong>APK</strong>
+                  </span>
                 </a>
               </div>
 
@@ -725,7 +761,11 @@ const LandingPage = () => {
                 momentum.
               </p>
 
-              <button className="pill-button footer-cta__button" type="button">
+              <button
+                className="pill-button footer-cta__button"
+                type="button"
+                onClick={() => handleNavClick("download-app")}
+              >
                 Download app
               </button>
             </div>
@@ -835,12 +875,15 @@ const LandingPage = () => {
           </div>
 
           <div className="footer-bottom">
-            <div className="footer-brand">
+            <div
+              className="footer-brand"
+              onClick={() => handleNavClick("hero")}
+            >
               <img src={finuxLogo} alt="Finux" />
             </div>
 
             <p>
-              © {new Date().getFullYear()} Finux. Designed for builders of the
+              {new Date().getFullYear()} Finux. Designed for builders of the
               crypto economy.
             </p>
 
