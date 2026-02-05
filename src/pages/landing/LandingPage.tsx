@@ -1,7 +1,7 @@
 import { type CSSProperties, useEffect, useState } from "react";
 import { MdOutlineAndroid } from "react-icons/md";
 
-import heroCoins from "../../assets/bitcoin copy 1.svg";
+import heroCoins from "../../assets/hero image.webp";
 
 import finuxLogo from "../../assets/Finux (1).svg";
 
@@ -19,7 +19,7 @@ import stackIcon from "../../assets/kFW9oB0lpLbUlaE5PRMjFjfn0Qc copy 1.svg";
 
 import realtimeIcon from "../../assets/uDGuWbZP77iu7pgjp04gtfeUY copy 1.svg";
 
-import bitcoinImage from "../../assets/bitcoin copy 1.svg";
+import bitcoinImage from "../../assets/hero image.webp";
 
 import cryptoAccessImage from "../../assets/Screenshot 2026-01-27 at 3.41.16 PM copy 1.svg";
 
