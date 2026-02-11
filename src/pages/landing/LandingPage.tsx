@@ -368,7 +368,12 @@ const LandingPage = () => {
                 <span>Download Apk</span>
               </button>
 
-              <a className="ghost-link" href="#">
+              <a
+                className="ghost-link"
+                href="https://finux-online.s3.ap-south-1.amazonaws.com/pdf/finuxpdf.pdf"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 Download Pdf
               </a>
             </div>
