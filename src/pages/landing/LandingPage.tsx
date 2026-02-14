@@ -354,7 +354,7 @@ const LandingPage = () => {
                 className="pill-button"
                 onClick={() =>
                   window.open(
-                    "https://finux-online.s3.ap-south-1.amazonaws.com/apk/finux.apk",
+                    "https://finux-online.s3.ap-south-1.amazonaws.com/apk/build-1771066300343.apk",
                     "_blank",
                   )
                 }
