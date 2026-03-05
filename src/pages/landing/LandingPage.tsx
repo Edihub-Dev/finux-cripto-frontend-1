@@ -179,6 +179,8 @@ const LandingPage = () => {
 
   const [isNavOpen, setIsNavOpen] = useState(false);
 
+  const [isPdfDownloading, setIsPdfDownloading] = useState(false);
+
   const [showExtraSections] = useState(false);
 
   const [showHeaderExtras] = useState(false);
@@ -264,6 +266,38 @@ const LandingPage = () => {
       document.body.style.overflow = "";
     };
   }, [isNavOpen]);
+
+  const handlePdfDownload = async () => {
+    if (isPdfDownloading) return;
+
+    const pdfUrl =
+      "https://finux-online.s3.ap-south-1.amazonaws.com/pdf/finuxpdf.pdf";
+
+    try {
+      setIsPdfDownloading(true);
+      const response = await fetch(pdfUrl, { mode: "cors" });
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch PDF");
+      }
+
+      const blob = await response.blob();
+      const objectUrl = URL.createObjectURL(blob);
+
+      const link = document.createElement("a");
+      link.href = objectUrl;
+      link.download = "finuxpdf.pdf";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+
+      URL.revokeObjectURL(objectUrl);
+    } catch {
+      alert("PDF download failed. Please try again.");
+    } finally {
+      setIsPdfDownloading(false);
+    }
+  };
 
   const handleNavClick = (target: string) => {
     const section = document.getElementById(target);
@@ -369,12 +403,22 @@ const LandingPage = () => {
               </button>
 
               <a
-                className="ghost-link"
+                className={`ghost-link ${isPdfDownloading ? "ghost-link--busy" : ""}`}
                 href="https://finux-online.s3.ap-south-1.amazonaws.com/pdf/finuxpdf.pdf"
-                target="_blank"
-                rel="noreferrer noopener"
+                onClick={(event) => {
+                  event.preventDefault();
+                  void handlePdfDownload();
+                }}
+                aria-busy={isPdfDownloading}
               >
-                Download Pdf
+                <span className="ghost-link__content">
+                  {isPdfDownloading && (
+                    <span className="ghost-link__spinner" aria-hidden="true" />
+                  )}
+                  <span>
+                    {isPdfDownloading ? "Downloading..." : "Download Pdf"}
+                  </span>
+                </span>
               </a>
             </div>
             {showHeaderExtras && (

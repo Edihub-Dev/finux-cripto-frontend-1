@@ -961,6 +961,32 @@ img {
   transform: scaleX(1);
 }
 
+.ghost-link--busy {
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.ghost-link__content {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ghost-link__spinner {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  border: 2px solid rgba(200, 184, 173, 0.35);
+  border-top-color: rgba(255, 140, 50, 0.9);
+  animation: ghost-link-spin 0.8s linear infinite;
+}
+
+@keyframes ghost-link-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .hero {
   margin-top: 0;
   display: grid;
