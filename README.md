@@ -1,3 +1,12 @@
+Developer Name : Vishal kumawat <br>
+role : full-stack developer <br>
+Email : vishalskumawat9@gmail.com <br>
+<br>
+<br>
+Developer Name : Dinesh kumawat <br>
+role : full-stack developer <br>
+Email : dineshkumawatdtr123@gmail.com <br>
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
